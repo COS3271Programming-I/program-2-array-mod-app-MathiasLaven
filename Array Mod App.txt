@@ -1,0 +1,94 @@
+package my_project;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class MyClass {
+    static Scanner userinput = new Scanner(System.in);
+    public static void main(String[] args) {
+    	
+    	//initial array
+    	System.out.print("Enter up to 20 integers, separated by spaces. You will be able to edit this array before sorting. \n>>");
+    	String entries = userinput.nextLine();
+    	
+		String[] entriesStringArray = entries.split(" ", 20);
+		int[] entriesArray = new int[entriesStringArray.length];
+		
+		//https://stackoverflow.com/questions/18838781/converting-string-array-to-an-integer-array
+		for (int i = 0; i < entriesArray.length; i++) {
+			entriesArray[i] = Integer.parseInt(entriesStringArray[i]);
+		}
+		
+    	System.out.println("");
+    	
+    	System.out.print("Do you want to edit any items? Type the item number to edit that item, or anything else to proceed to sorting. \n>>");
+    	String editInput = userinput.nextLine();
+    	
+    	//editing loop
+    	while (stringIsNumber(editInput)) {
+    		
+    		int editIndex = Integer.parseInt(editInput);
+    		
+    		//make sure it's in bounds
+    		if (editIndex >= 1 && editIndex <= entriesArray.length) {
+            	System.out.format("Item #%d is currently %d. What will you change it to? \n>>", editIndex, entriesArray[editIndex-1]);
+            	int editedValue = userinput.nextInt();
+            	
+            	entriesArray[editIndex-1] = editedValue;
+            	
+            	System.out.format("Item #%d is now %d.\n", editIndex, entriesArray[editIndex-1]);
+            	
+            	//this is to prevent an issue where the \n is captured from the previous input, skipping past the next one
+            	String dummy = userinput.nextLine();
+            	dummy = dummy + "";
+            	
+    		} else {
+            	System.out.println("That number is out of bounds. Please provide a valid item number within the previous array.");
+    		}
+    		
+        	System.out.println("");
+        	System.out.print("Do you want to edit another item? Type the item number to edit that item, or anything else to proceed to sorting. \n>>");
+        	editInput = userinput.nextLine();
+        	
+        	System.out.println("");
+
+    	}
+    	
+    	System.out.println("");
+    	
+    	//sorting
+    	//designed a bubble sort implementation before realizing Arrays had a sort built-in
+    	//somewhat funny anecdote (at least i think it's funny)
+    	
+    	int[] sortedEntriesArray = entriesArray;
+    	Arrays.sort(sortedEntriesArray);
+    	
+    	//display
+    	System.out.println("Sorted integers:");
+		for (int i = 0; i < sortedEntriesArray.length; i++) {
+	    	System.out.print(sortedEntriesArray[i] + " ");
+		}
+    	
+
+		
+	}
+    public static boolean stringIsNumber(String string) {
+    	
+    	//method of testing if a string is a number
+    	//the string is split into an array of characters,
+    	//then the array is iterated over and each character is tested
+    	
+    	//inspired by a response to https://stackoverflow.com/questions/1102891/how-to-check-if-a-string-is-numeric-in-java
+    	//but rewritten to use only covered concepts (apart from methods and return)
+    	
+    	
+    	char[] stringChars = string.toCharArray();
+    	for (int i = 0; i < stringChars.length; i++) {
+    		if (!Character.isDigit(stringChars[i])) {
+    			return false;
+    		}
+    	}
+    	
+    	return true;
+    	
+    }
+}

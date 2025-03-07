@@ -1,0 +1,22 @@
+Enter up to 20 integers, separated by spaces. You will be able to edit this array before sorting. 
+>>18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1
+
+Do you want to edit any items? Type the item number to edit that item, or anything else to proceed to sorting. 
+>>12
+Item #12 is currently 7. What will you change it to? 
+>>999
+Item #12 is now 999.
+
+Do you want to edit another item? Type the item number to edit that item, or anything else to proceed to sorting. 
+>>4
+
+Item #4 is currently 15. What will you change it to? 
+>>-1
+Item #4 is now -1.
+
+Do you want to edit another item? Type the item number to edit that item, or anything else to proceed to sorting. 
+>>sort
+
+
+Sorted integers:
+-1 1 2 3 4 5 6 8 9 10 11 12 13 14 16 17 18 999
